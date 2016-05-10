@@ -210,7 +210,10 @@
 					"css/mui.min.css",
 					"fonts/mui.ttf",
 					"main.html",
-					"view/register.html"
+					"view/register.html",
+					"js/login.js",
+					"js/md5.js",
+					"js/jquery-1.12.3.min.js"
 				],
 				"refer": [],
 				"priority": 0

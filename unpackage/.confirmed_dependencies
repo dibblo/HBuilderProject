@@ -15,7 +15,10 @@
       "js/mui.min.js",
       "css/mui.min.css",
       "fonts/mui.ttf",
-      "view/register.html"
+      "view/register.html",
+      "js/login.js",
+      "js/md5.js",
+      "js/jquery-1.12.3.min.js"
     ],
     "refer": [
       "main.html"
