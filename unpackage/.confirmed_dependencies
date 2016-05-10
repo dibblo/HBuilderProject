@@ -1,0 +1,25 @@
+{
+  "main.html": {
+    "href": "main.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "index.html"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "view/register.html"
+    ],
+    "refer": [
+      "main.html"
+    ],
+    "priority": 0
+  }
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style>
+			.mui-content {
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar-nav mui-bar">
+			<h1 class="mui-title">Test 登录</h1>
+		</header>
+		<div class="mui-content">
+			<form action="" class="mui-input-group" method="post">
+				<div class="mui-input-row">
+					<label for="">账号</label>
+					<input type="text" class="mui-input-clear" id="account" />
+				</div>
+				<div class="mui-input-row">
+					<label for="">密码</label>
+					<input type="password" class="mui-input-clear" id="password" />
+				</div>
+			</form>
+			<div class="mui-content-padded">
+				<button id="login" class="mui-button mui-btn-block mui-btn-primary">登录</button>
+			</div>
+			<div class="mui-content-padded">
+				<button id="register" class="mui-button mui-btn-block mui-btn-primary">注册</button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				var login = document.getElementById("login");
+				var register = document.getElementById("register");
+				var password = document.getElementById("password");
+				var account = document.getElementById("account");
+				login.addEventListener('click', function() {
+					mui.ajax("http://192.168.0.51:8080/applogin", {
+						data: {
+							userName: account.value,
+							password: password.value
+						},
+						type: "post",
+						dataType:"json",
+						timeout: 2000,
+						success: function(data) {
+							if (data.result == 1) {
+								window.location.href = "view/main.html"
+							} else {
+								alert(data.message);
+							}
+						},
+						error: function(e,type,errorThrown) {
+						 	console.log(e.readyState);
+						 	console.log(type);
+						 	console.log(errorThrown);
+						}
+					})
+				});
+				
+				register.addEventListener("click",function(){
+					
+				});
+				
+				function UserInfo(){
+					
+				};
+				
+				UserInfo.clear = function(){
+				    plus.storage.removeItem('username');
+				    plus.storage.removeItem('password');
+				    plus.storage.removeItem('token');
+				}
+				
+				//检查是否包含自动登录的信息
+				UserInfo.auto_login = function(){
+				    var username = UserInfo.username();
+				    var pwd = UserInfo.password();
+				    if(!username || !pwd){
+				        return false;
+				    }
+				    return true;
+				}
+				
+				//检查是否已登录
+				UserInfo.has_login = function(){
+				    var username = UserInfo.username();
+				    var pwd = UserInfo.password();
+				    var token = UserInfo.token();
+				    if(!username || !pwd || !token){
+				        return false;
+				    }
+				    return true;
+				};
+				
+				UserInfo.username = function(){
+				    if(arguments.length == 0){
+				        return plus.storage.getItem('username');        
+				    }
+				    if(arguments[0] === ''){
+				        plus.storage.removeItem('username');
+				        return;
+				    }
+				    plus.storage.setItem('username', arguments[0]);
+				};
+				
+				UserInfo.password = function(){
+				    if(arguments.length == 0){
+				        return plus.storage.getItem('password');        
+				    }
+				    if(arguments[0] === ''){
+				        plus.storage.removeItem('password');
+				        return;
+				    }
+				    plus.storage.setItem('password', arguments[0]);
+				};
+				
+				UserInfo.token = function(){
+				    if(arguments.length == 0){
+				        return plus.storage.getItem('token');       
+				    }
+				    if(arguments[0] === ''){
+				        plus.storage.removeItem('token');
+				        return;
+				    }
+				    plus.storage.setItem('token', arguments[0]);
+				};
+			})
+			
+		</script>
+	</body>
+
+</html>
