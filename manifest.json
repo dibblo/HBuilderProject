@@ -213,7 +213,11 @@
 					"view/register.html",
 					"js/login.js",
 					"js/md5.js",
-					"js/jquery-1.12.3.min.js"
+					"js/jquery-1.12.3.min.js",
+					"js/Barrett.js",
+					"js/RSA.js",
+					"js/BigInt.js",
+					"js/security.js"
 				],
 				"refer": [],
 				"priority": 0

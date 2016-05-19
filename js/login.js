@@ -4,9 +4,18 @@ mui.plusReady(function() {
 	var password = document.getElementById("password");
 	var account = document.getElementById("account");
 	var redirect = document.getElementById("redirect")
-	var prefix = "latiflan";
+	var model = "cf66d738cb94b4dd67917d907d44e9a316ec223de81d8429eac903818fc46540f555aa3029b3f2d1c7614073768f7daada79ad293d5e75c4d50f0b36fc300a8f7e24e2cae10612a60d9df2ab51b75f5579a39ce164ed7e0fb5125782c3188f14172836c664f1b1bc92bd32348a595788ac4eea121796680312f51ea057b76d0d";
+	var exponent = "10001";
+	
+	var passname = $("#pwd").attr("name");
+	passname = new Date().DateTimeFormat("yyyy-MM-dd hh:mm:ss");
 	login.addEventListener('click', function() {
-		var hash_password = $.md5(prefix + password.value);
+		var key = new RSAUtils.getKeyPair(exponent, "", model);
+		var result = RSAUtils.encryptedString(key,password.value);
+		console.log("password:"+password.value);
+		console.log("result:"+result);
+		console.log("publicKey:" + model);
+		var hash_password = result;
 		mui.ajax("http://192.168.0.51:8080/applogin", {
 			data: {
 				userName: account.value,
